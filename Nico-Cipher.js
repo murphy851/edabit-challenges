@@ -54,5 +54,5 @@ function nicoCipher(message, key) {
     return final.join("");
 }
 
-console.log(caesarCipher("mubashirhassan", "crazy"));
+console.log(nicoCipher("mubashirhassan", "crazy"));
 // Expected result = "bmusarhiahass n"

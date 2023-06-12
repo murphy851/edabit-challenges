@@ -9,36 +9,37 @@
 // factor). It should return an encrypted string.
 
 function caesarCipher(s, k) {
-    s = s.split("");
-  
-    var alphabet = "abcdefghijklmnopqrstuvwxyz".split('');
-    var result = [];
-    var match = 0;
-    var upper = false;
-  
-    for (var i = 0; i < s.length; i++) {
+  s = s.split("");
+
+  var alphabet = "abcdefghijklmnopqrstuvwxyz".split('');
+  var result = [];
+  var match = 0;
+  var upper = false;
+
+  for (var i = 0; i < s.length; i++) {
       if (s[i] == s[i].toUpperCase()) {
-        upper = true;
-        s[i] = s[i].toLowerCase();
+          upper = true;
+          s[i] = s[i].toLowerCase();
       }
       for (var j = 0; j < alphabet.length; j++) {
-        if ((s[i]) == alphabet[j] && match == 0) {
-          var possition = (j+k)%26;
-          if (upper == true) {
-            result.push(alphabet[possition].toUpperCase());
-          } else {
-            result.push(alphabet[possition]);
+          if ((s[i]) == alphabet[j] && match == 0) {
+              var possition = (j + k) % 26;
+              if (upper == true) {
+                  result.push(alphabet[possition].toUpperCase());
+              } else {
+                  result.push(alphabet[possition]);
+              }
+              match++;
           }
-          match++;
-        }
-      } if (match == 0) {
-        result.push(s[i]);
+      }
+      if (match == 0) {
+          result.push(s[i]);
       }
       match = 0;
       upper = false;
-    }
-    return result.join("");
   }
+  return result.join("");
+}
 
-  console.log(caesarCipher("middle-Outz", 2));
-    // Expected result = "okffng-Qwvb"
+console.log(caesarCipher("middle-Outz", 2));
+// Expected result = "okffng-Qwvb"

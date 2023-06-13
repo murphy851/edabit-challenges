@@ -16,61 +16,62 @@
 
 function words(text) {
     var tap = [
-      ["A", "B", "C/K", "D", "E"],
-      ["F", "G", "H", "I", "J"],
-      ["L", "M", "N", "O", "P"],
-      ["Q", "R", "S", "T", "U"],
-      ["V", "W", "X", "Y", "Z"],
+        ["A", "B", "C/K", "D", "E"],
+        ["F", "G", "H", "I", "J"],
+        ["L", "M", "N", "O", "P"],
+        ["Q", "R", "S", "T", "U"],
+        ["V", "W", "X", "Y", "Z"],
     ];
     var result = [];
     text = text.toUpperCase().split("");
     for (var i = 0; i < text.length; i++) {
-      for (var j = 0; j < tap.length; j++) {
-        for (var k = 0; k < tap[j].length; k++) {
-          if (tap[j][k].indexOf(text[i]) != -1) {
-            result.push([j + 1], [k + 1]);
-            // console.log([j+1]);
-            // console.log([k+1]);
-          }
+        for (var j = 0; j < tap.length; j++) {
+            for (var k = 0; k < tap[j].length; k++) {
+                if (tap[j][k].indexOf(text[i]) != -1) {
+                    result.push([j + 1], [k + 1]);
+                    // console.log([j+1]);
+                    // console.log([k+1]);
+                }
+            }
         }
-      }
     }
     var finalResult = [];
     var hold = "";
     for (var i = 0; i < result.length; i++) {
-      for (var j = 0; j < result[i]; j++) {
-        hold += ".";
-      }
-      finalResult.push([hold]);
-      hold = "";
+        for (var j = 0; j < result[i]; j++) {
+            hold += ".";
+        }
+        finalResult.push([hold]);
+        hold = "";
     }
     return finalResult.join(" ");
-  }
-  
-  function dots(text) {
+}
+
+function dots(text) {
     var result = [];
     var tap = [
-      ["A", "B", "C", "D", "E"],
-      ["F", "G", "H", "I", "J"],
-      ["L", "M", "N", "O", "P"],
-      ["Q", "R", "S", "T", "U"],
-      ["V", "W", "X", "Y", "Z"],
+        ["A", "B", "C", "D", "E"],
+        ["F", "G", "H", "I", "J"],
+        ["L", "M", "N", "O", "P"],
+        ["Q", "R", "S", "T", "U"],
+        ["V", "W", "X", "Y", "Z"],
     ];
-  
+
     var dots = text.split(" ");
     for (var i = 0; i < dots.length; i = i + 2) {
-      result.push(tap[dots[i].length-1][dots[i+1].length-1]);
+        result.push(tap[dots[i].length - 1][dots[i + 1].length - 1]);
     }
     return result.join("").toLowerCase();
-  }
-  
-  function tapCode(text) {
-    if (/[a-zA-Z]/.test(text)) {
-      return words(text);
-    } else {
-      return dots(text);
-    }
-  }
+}
 
-  console.log(tapCode("greeting"));
+function tapCode(text) {
+    if (/[a-zA-Z]/.test(text)) {
+        return words(text);
+    } else {
+        return dots(text);
+    }
+}
+
+
+console.log(tapCode("greeting"));
 // Expected result = ".. .. .... .. . ..... . ..... .... .... .. .... ... ... .. .."
